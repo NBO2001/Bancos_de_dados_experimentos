@@ -1,6 +1,9 @@
+from config import Config
 from readfile import readFile
 from item import Item
 
+# Download files
+conf = Config()
 
 path_file = "./downloads/sample"
 
