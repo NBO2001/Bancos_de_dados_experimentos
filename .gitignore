@@ -3,6 +3,6 @@ __pycache__/
 *.csv
 *.pkl
 teste.py
-*.txt
 amostra
 sample
+downloads/*.txt

@@ -1,0 +1,17 @@
+beautifulsoup4
+Brotli
+certifi
+charset-normalizer
+colorama
+filelock
+gdown
+idna
+psycopg2
+PySocks
+requests
+setuptools==68.2.2
+six
+soupsieve
+tqdm
+urllib3
+wheel==0.42.0
