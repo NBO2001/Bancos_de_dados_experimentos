@@ -1,6 +1,7 @@
 import re
 from review import Review
 from item import Item
+from category import Category
 
 def readFile(filename: str = None, callback: callable = None):
     if filename is None:
@@ -51,7 +52,10 @@ def readFile(filename: str = None, callback: callable = None):
             elif categories_match:
                 qnt = int(categories_match[0].strip())
                 ctgs = [next(f, None).strip() for _ in range(qnt)]
-                new_item.categories = ctgs
+
+                list_categorys_raw = [ [ Category(raw_category=y) for y in x.split("|") if len(y) > 0] for x in ctgs]
+
+                new_item.categories = list_categorys_raw
             elif reviews_match:
                 rwv = reviews_match[0]
                 total = int(re.findall(r'\b(?:total):\s*([^\s]+)', rwv)[0]) if 'total' in rwv else None

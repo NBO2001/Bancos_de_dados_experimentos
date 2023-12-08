@@ -17,5 +17,5 @@ def addDatabase(item: Item):
 
 readFile(filename=path_file, callback=addDatabase)
 
-for i in range(5,10):
+for i in range(10,15):
     print(contents[i])
