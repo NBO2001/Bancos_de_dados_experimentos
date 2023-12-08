@@ -1,0 +1,8 @@
+*.json
+__pycache__/
+*.csv
+*.pkl
+teste.py
+*.txt
+amostra
+sample
