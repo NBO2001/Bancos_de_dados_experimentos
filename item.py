@@ -6,7 +6,7 @@ class Item:
     title:      str     = None
     group:      str     = None
     salesrank:  str     = None
-    similar:    tuple   = None
+    similar:    str   = None
     categories: list    = None # list of categorys
     reviews:    tuple   = (None,None,None)  # (total, downloaded, avg_rating)
     list_reviews: list  = None  # list of the reviews
