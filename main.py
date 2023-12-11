@@ -8,7 +8,7 @@ from review import Review
 # Download files
 conf = Config()
 
-path_file = "./downloads/sample"
+path_file = "./downloads/sample_100k"
 
 contents = []
 
