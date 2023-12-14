@@ -4,6 +4,6 @@ __pycache__/
 *.pkl
 teste.py
 amostra
-sample
+sample*
 downloads/*.txt
 venv

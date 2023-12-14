@@ -9,8 +9,12 @@ class Config:
 
     
     def __downloads(self,) -> bool:
-
-        files = [("./downloads/sample","1Z5te6CPHoStw-9Tm-DT2D6xf6EE-6BLB"), ("./downloads/amazon-meta.txt", "1Ru21bKkHhjRi8QV2pX7n6SdPxrs9UOlC"), ]
+        
+        files = [
+            ("./downloads/sample","1Z5te6CPHoStw-9Tm-DT2D6xf6EE-6BLB"), 
+            ("./downloads/amazon-meta.txt", "1Ru21bKkHhjRi8QV2pX7n6SdPxrs9UOlC"), 
+            ("./downloads/sample_100k","1ux9jBPuKNBI0aWDPPmfcIYVyf9r4K-Nn")
+            ]
 
         for file, id in files:
 
