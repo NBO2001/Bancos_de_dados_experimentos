@@ -36,7 +36,7 @@ class Review:
         votes = re.findall(votes_pattern, line)
         self.votes = int(votes[0]) if len(votes) != 0 else None
 
-        helpful_pattern = r'\b(?:votes):\s*([^\s]+)'
+        helpful_pattern = r'\b(?:helpful):\s*([^\s]+)'
 
         helpful = re.findall(helpful_pattern, line)
         self.helpful = int(helpful[0]) if len(helpful) != 0 else None
