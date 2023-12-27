@@ -8,7 +8,7 @@ from review import Review
 # Download files
 conf = Config()
 
-path_file = "./downloads/sample_100k"
+path_file = "./downloads/sample"
 
 contents = []
 
@@ -19,6 +19,7 @@ def addDatabase(item: Item):
     group_insert_sql = """
     INSERT INTO groups (name) VALUES (%s) ON CONFLICT (name) DO NOTHING
     """
+
     product_insert_sql = """
     INSERT INTO products (product_id, asin, title, salesrank, total_reviews, group_id_fk)
     VALUES (%s,%s,%s,%s,%s, (SELECT group_id FROM groups WHERE name = %s))

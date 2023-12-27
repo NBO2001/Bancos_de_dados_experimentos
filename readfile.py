@@ -10,7 +10,7 @@ def readFile(filename: str = None, callback: callable = None):
     with open(filename, "r") as f:
         new_item = None
 
-        id_pattern = re.compile(r'\b(?:Id):\s*([^\n]+)')
+        id_pattern = re.compile(r'\b(?:Id:)\s*([^\n]+)')
         asin_pattern = re.compile(r'\b(?:ASIN):\s*([^\n]+)')
         title_pattern = re.compile(r'\b(?:title):\s*([^\n]+)')
         group_pattern = re.compile(r'\b(?:group):\s*([^\n]+)')
@@ -25,8 +25,14 @@ def readFile(filename: str = None, callback: callable = None):
             if id_match:
                 if new_item is not None and callback is not None:
                     callback(new_item)
-                new_item = Item()
-                new_item.id = id_match[0]
+                try:
+                    id_math = int(id_match[0])
+
+                    new_item = Item()
+               
+                    new_item.id = id_math
+                except Exception as e:
+                    print(f"Error: {e}")
 
             if new_item is None:
                 continue
