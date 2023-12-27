@@ -1,6 +1,6 @@
 from connect import exec_query
 
-ID_PRODUCT = 38
+ID_PRODUCT = 1
 
 sql_question_b = """
 SELECT p2.product_id, p2.asin, p2.title, p2.salesrank

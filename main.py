@@ -1,16 +1,18 @@
 from config import Config
 from readfile import readFile
 from item import Item
-from connect import exec_query
+from connect import Connect
 from category import Category
 from review import Review
 
 # Download files
 conf = Config()
 
-path_file = "./downloads/sample_100k"
+path_file = "./downloads/amazon-meta.txt"
 
 contents = []
+
+connect = Connect()
 
 group_set = set()
             
@@ -46,27 +48,27 @@ def addDatabase(item: Item):
     
     if item.group and item.group not in group_set:
         group_set.add(item.group)
-        exec_query(query=[group_insert_sql, (item.group, )])
+        connect.exec_query(query=[group_insert_sql, (item.group, )])
 
 
-    exec_query(query=[product_insert_sql, (item.id, item.asin, item.title, item.salesrank, item.reviews[0], item.group)], debugger=True)
+    connect.exec_query(query=[product_insert_sql, (item.id, item.asin, item.title, item.salesrank, item.reviews[0], item.group)], debugger=True)
 
     if item.reviews[1]:
 
         for rvw in item.list_reviews:
-            exec_query(query=[reviews_insert_sql, (rvw.date,rvw.rating, rvw.votes, rvw.helpful, rvw.customer, item.id)])
+            connect.exec_query(query=[reviews_insert_sql, (rvw.date,rvw.rating, rvw.votes, rvw.helpful, rvw.customer, item.id)])
     
     if item.categories:
         for category in item.categories:
 
             father:Category = category.pop(0)
-            exec_query(query=[category_insert_sql, (father.category_id, father.category_name, None)])
+            connect.exec_query(query=[category_insert_sql, (father.category_id, father.category_name, None)])
 
             for child in category:
-                exec_query(query=[category_insert_sql, (child.category_id, child.category_name, father.category_id)])
+                connect.exec_query(query=[category_insert_sql, (child.category_id, child.category_name, father.category_id)])
                 father = child
             
-            exec_query(query=[productscategories_insert_sql, (item.id, father.category_id)])
+            connect.exec_query(query=[productscategories_insert_sql, (item.id, father.category_id)])
 
     if item.similar:
         list_sims = [ x.strip() for x in item.similar.split(" ") if len(x.split()) ]
@@ -74,7 +76,8 @@ def addDatabase(item: Item):
 
         if tol_simis:
             for simi in list_sims:
-                exec_query(query=[productproduct_insert_sql, (item.id, simi)])        
+                connect.exec_query(query=[productproduct_insert_sql, (item.id, simi)])        
 
 readFile(filename=path_file, callback=addDatabase)
 
+connect.close()
