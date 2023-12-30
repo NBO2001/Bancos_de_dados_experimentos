@@ -1,6 +1,6 @@
 import connection
 
-path = "downloads/gambiarra"
+path = "downloads/"
 
 class Item():
     id: int = None
